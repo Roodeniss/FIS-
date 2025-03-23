@@ -139,6 +139,11 @@
 
 ### Recomendaciones de uso 
 
+- A la hora de trabajar sobre una nueva funcionalidad o un nuevo desarrollo es recomendable crear una nueva branch que encapsule dichas modificaciones, esto permite que el desarrollo se mantenga independiente del codigo principal del proyecto minimizando una posible contaminacion de la rama principal con codigo que no se ha probado aun o que pueda contener algun bug.
+- Al crear una nueva branch ya sea para un nuevo desarrollo o para la correcion de un incidente es recomendable que el ciclo de vida de esta branch no termine una vez finalizada la modificacion anterior. Ya que en un futuro si ocurre un nuevo bug o debe extenderse el desarrollo que tuvo inicio en dicha rama, es conveniente que la rama este actualizada y este actualizada con los cambios que se hayan realizado en la rama principal.
+- Al la hora de realizar un `git merge` es altamente recomendable actualizar las ramas locales que estaran involucradas en la fusion. Ya que de no estar actualizadas podrian haber commits que queden por fuera del merge.
+- Al realizar un `git merge` muchas veces nos veremos en la necesidad de resolver conflictos, esta tarea suele facilitarse ampliamente utilizando interfaces graficas en lugar de hacer las correciones manualmente desde la consola o directamente desde el IDE que estemos utilizando. Esto se debe a que dichas interfaces nos proveen una expriencia visual mucho mas amigable que permite saber exactamente que cambios estamos concervando o modificando.
+- Tambien a la hora de resolver conflictos es muy importante mantener una buena comunicacion con el resto del equipo, esto nos permitira minimizar errores o perdidas de codigo. Ya que se puede dar el caso que a la hora de agregar mis cambios descarto el codigo hecho por otra miembro del equipo en pos de agregar mis cambios.
 
 ### Recursos de aprendizaje
 
