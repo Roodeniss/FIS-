@@ -44,18 +44,18 @@
 		nothing added to commit but untracked files present (use "git add" to track)
 		```
 		- Agregamos los nuevos archivos a commitear:
-		  git add .
+		  `git add .`
 		- Creamos el nuevo commit que publicara la nueva rama en el repositorio remoto:
-		  ```bash
-		$ git commit -m "First branch_a commit"
-		[branch_a 2b50160] First branch_a commit
-		1 file changed, 0 insertions(+), 0 deletions(-)
-		create mode 100644 branch_a.txt
+		  ``` bash
+			$ git commit -m "First branch_a commit"
+			[branch_a 2b50160] First branch_a commit
+			1 file changed, 0 insertions(+), 0 deletions(-)
+			create mode 100644 branch_a.txt
 			```
 
 		- Luego al ejecutar push para subir nuestros cambios puede que devuelva el siguiente error, debido a que no se ha definido remotamente donde debe dirigirse la rama recien creada:
 		  
-		  ```bash
+		  ``` bash
 		  $ git push
 			`fatal: The current branch branch_a has no upstream branch.`
 			`To push the current branch and set the remote as upstream, use`
@@ -65,7 +65,7 @@
 			```
 		- Si esto sucede ejecutamos el comando sugerido para setear un destino a nuestra nueva branch: `git push --set-upstream origin branch_a`
 		- Si todo sale bien deberiamos ver un mensaje del estilo:
-			```bash
+			``` bash
 			Enumerating objects: 4, done.
 			Counting objects: 100% (4/4), done.
 			Delta compression using up to 8 threads
@@ -117,7 +117,7 @@
 	- Ahora veremos un ejemplo de como pude suceder un conflicto al mergear dos branches que modificaron los mismos archivos.
 	- Por un lado tenemos la branch_a y por otro las branch_b y ambas modificaran el archivo conflito.txt con cosas distintas.
 	- Al querer mergear la rama branch_b dentro de branch_a esto producira un conflicto que se visualiza de la siguiente manera:
-	  ```bash
+	  	```bash
 	  	$ git merge branch_b
 		Auto-merging conflicto.txt
 		CONFLICT (add/add): Merge conflict in conflicto.txt
@@ -130,9 +130,8 @@
 			 =======
 				Este archivo generara conflicto.
 		     >>>>>>> branch_b
-			```
-		Como podemos apreciar dentro del archivo conflicto.txt nos encontramos tanto los cambios locales (Entre el `<<<<<<< HEAD` y la barra `=======`) como los remotos.
-		En este caso vemos que los textos del achivo fueron modificados en ramas distintas, por lo que se debe corregir este conflitos.
+		```
+		Como podemos apreciar dentro del archivo conflicto.txt nos encontramos tanto los cambios locales (Entre el `<<<<<<< HEAD` y la barra `=======`) como los remotos. En este caso vemos que los textos del achivo fueron modificados en ramas distintas, por lo que se debe corregir este conflitos.
 	- Tenemos varias formas de corregir un conflito, podemos hacerlo manualmente ingresando al archivo y quedandonos con los cambios que decidamos mantener, luego agregamos los archivos modificados con el comando `git add`. Otra opcion es utilizar el comando `git mergetool` esto nos mostrara una interfaz que podemos configurar con la herramienta que prefiramos (algunos ejemplos son opendiff, kdiff3, tkdiff, xxdiff, meld, vimdiff, nvimdiff) para facilitar la vizualizacion del conflicto, y poder corregirlo. Y como opcion adicional existen extenciones o software dediaco a la resolucion de conflictos en git como son SourceTree, Gitkraken, etc.
 	- Una vez resuelto el conflicto ejecutamos el comando `git merge --continue` para que git salga del estado de MERGING y cree el commit de fusion correspondiente.
 	- Una vez completado el paso anterior podemos ejecutar el git push como se describio en el apartado anterior ( 2) Merge:)
