@@ -139,7 +139,7 @@
 		Auto-merging conflicto.txt
 		CONFLICT (add/add): Merge conflict in conflicto.txt
 		Automatic merge failed; fix conflicts and then commit the result.
-	```
+		```
 	-  En el archivo conflicto nos encontraremos con lo siguiente:
 		  ``` bash
 			<<<<<<< HEAD
