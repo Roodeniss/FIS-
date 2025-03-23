@@ -1,15 +1,18 @@
 ### Fuentes de información 
 
-[Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows)
-[Documentación Oficial de Git](https://git-scm.com/docs)
-[Varonis](https://www.varonis.com/blog/git-branching "https://www.varonis.com/blog/git-branching")
-[Git - Merge - GeeksforGeeks](https://www.geeksforgeeks.org/git-merge/ "https://www.geeksforgeeks.org/git-merge/")
-[Git Tutorial](https://www.geeksforgeeks.org/git-tutorial/?ref=header_outind)
+- [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows)
+- [Documentación Oficial de Git](https://git-scm.com/docs)
+- [Varonis](https://www.varonis.com/blog/git-branching "https://www.varonis.com/blog/git-branching")
+- [Git - Merge - GeeksforGeeks](https://www.geeksforgeeks.org/git-merge/ "https://www.geeksforgeeks.org/git-merge/")
+- [Git Tutorial](https://www.geeksforgeeks.org/git-tutorial/?ref=header_outind)
 ### Definiciones 
 
-1) **Branch**:  Las git branches son un punto de referencia a una instancia. Con instancia nos referimos a cualquier tipo de cambio en el codigo ya sea un nuevo desarrollo dentro de un proyecto, la coreccion de un bug, entre otras. Sin importar la maginitud de la modificacion esta puede y deberia ser encapsulada en una branch, esto aporta mucho valor a la hora de manejar codigo inestable, ya que no queremos que dicho codigo se integre al cdigo principal sin antes completarse su ciclo de vida.
-2) **Merge**: Git merge es un comando de git que se encarga de combinar multiples commits, unificando las historias de dos branches. Los casos mas frecuentes de uso del git merge es para combinar los cambios de dos branches distintas. Git merge busca un punto base o commit base desde el cual iniciar la fusion de las ramas y apartir de ese crea un nuevo commit de fusion que combinara ambas ramas.
-3) **Resolución de conflictos**: Si las dos ramas que intentas fusionar cambiaron la misma parte del mismo archivo, Git no podrá determinar qué versión usar. En tal caso, se detiene justo antes de la confirmación de fusión para que puedas resolver los conflictos manualmente. Cuando se produce un conflicto de fusión, al ejecutar el comando ``git status`` se muestran los archivos en los que git encontro conflictos para mergear automaticamente. 
+1) **Branch**:
+   Las git branches son un punto de referencia a una instancia. Con instancia nos referimos a cualquier tipo de cambio en el codigo ya sea un nuevo desarrollo dentro de un proyecto, la coreccion de un bug, entre otras. Sin importar la maginitud de la modificacion esta puede y deberia ser encapsulada en una branch, esto aporta mucho valor a la hora de manejar codigo inestable, ya que no queremos que dicho codigo se integre al cdigo principal sin antes completarse su ciclo de vida.
+2) **Merge**:
+   Git merge es un comando de git que se encarga de combinar multiples commits, unificando las historias de dos branches. Los casos mas frecuentes de uso del git merge es para combinar los cambios de dos branches distintas. Git merge busca un punto base o commit base desde el cual iniciar la fusion de las ramas y apartir de ese crea un nuevo commit de fusion que combinara ambas ramas.
+3) **Resolución de conflictos**:
+   Si las dos ramas que intentas fusionar cambiaron la misma parte del mismo archivo, Git no podrá determinar qué versión usar. En tal caso, se detiene justo antes de la confirmación de fusión para que puedas resolver los conflictos manualmente. Cuando se produce un conflicto de fusión, al ejecutar el comando ``git status`` se muestran los archivos en los que git encontro conflictos para mergear automaticamente. 
 
 ### Demostración práctica
 
@@ -20,36 +23,49 @@
 		  - Utilizamos el comando `git branch <nombre_de_la_nueva_rama>` para crear una rama llamada branch_a.
 		    `git branch`
 		  - Luego utilizando `git checkout branch_a` nos ubicamos en la rama recien creada.
-		  `$ git checkout branch_a`
-			`Switched to branch 'branch_a'`
-		  - Luego publicamos la nueva rama desde nuestro repositorio local al repositorio remoto, para esto crearemos un nuevo commit:
+		    
+		```bash
+		$ git checkout branch_a
+		  Switched to branch 'branch_a'
+		```
 		  
+		- Luego publicamos la nueva rama desde nuestro repositorio local al repositorio remoto, para esto podemos hacer ``git push`` de nuestros cambios o crearemos un nuevo commit e incorporar la nueva rama con los nuevos cambios a subir:
 		  - Creamos un nuevo archivo llamado branch_a.txt:
-		  `touch branch_a.txt`
+		```bash
+	    touch branch_a.txt
+		```
 		  - Luego verificamos el status:
-		  - `$ git status`
-		    `On branch branch_a`
-		    `Untracked files:`
-			    `(use "git add <file>..." to include in what will be committed)`
-			        `branch_a.txt`
-			`nothing added to commit but untracked files present (use "git add" to track)`
+		```bash
+		$ git status
+		On branch branch_a
+		Untracked files:
+		(use "git add <file>..." to include in what will be committed)
+			branch_a.txt
+		nothing added to commit but untracked files present (use "git add" to track)
+		```
 		- Agregamos los nuevos archivos a commitear:
-		  `git add .`
+		  git add .
 		- Creamos el nuevo commit que publicara la nueva rama en el repositorio remoto:
-		  `$ git commit -m "First branch_a commit"`
-			`[branch_a 2b50160] First branch_a commit`
-			`1 file changed, 0 insertions(+), 0 deletions(-)`
-			`create mode 100644 branch_a.txt`
+		  ```bash
+		$ git commit -m "First branch_a commit"
+		[branch_a 2b50160] First branch_a commit
+		1 file changed, 0 insertions(+), 0 deletions(-)
+		create mode 100644 branch_a.txt
+			```
+
 		- Luego al ejecutar push para subir nuestros cambios puede que devuelva el siguiente error, debido a que no se ha definido remotamente donde debe dirigirse la rama recien creada:
 		  
-		  `$ git push`
+		  ```bash
+		  $ git push
 			`fatal: The current branch branch_a has no upstream branch.`
 			`To push the current branch and set the remote as upstream, use`
 				`git push --set-upstream origin branch_a`
 			`To have this happen automatically for branches without a tracking`
 			`upstream, see 'push.autoSetupRemote' in 'git help config'.`
+			```
 		- Si esto sucede ejecutamos el comando sugerido para setear un destino a nuestra nueva branch: `git push --set-upstream origin branch_a`
 		- Si todo sale bien deberiamos ver un mensaje del estilo:
+			```bash
 			Enumerating objects: 4, done.
 			Counting objects: 100% (4/4), done.
 			Delta compression using up to 8 threads
@@ -62,6 +78,7 @@
 			remote: To https://github.com/nombre_del_usuario/nombre_del_repo
 			 * [new branch]      branch_a -> branch_a
 			branch 'branch_a' set up to track 'origin/branch_a'.
+			```
 	-  **Listado**:
 		 - El comando ``git branch`` tambien nos permite listar las ramas existentes en el proyecto, si no se agrega ninguna flag (bandera o argumento) este mostrara las ramas existentes a nivel local, si le colocamos la flag ``-l`` tambien obtendremos como resultado, y si quisieramos listar todas las branches tanto remotas como locales usariamos la flag ``-a``.
 		- Ejemplos:
@@ -77,7 +94,9 @@
 		- Ejemplo:
 			- ``git branch -d``: Utilizando la flag ``-d`` se realiza un borrado simple de la rama.
 				- En caso de error lanza algo similar a esto:
-					  `error: The branch 'nombre-branch' is not fully merged. If you are sure you want to delete it, run 'git branch -D crazy-experiment'.`
+				  ```bash
+				  	error: The branch 'nombre-branch' is not fully merged. If you are sure you want to delete it, run 'git branch -D crazy-experiment'.
+					```
 			- ``git branch -D``: Utilizando la flag ``-D`` se realiza un borrado forzado de la rama.
 
 	Todos los comandos que modifiquen caracteristicas de la branch quedaran a nivel local hasta que se ejecute un commit y/o un push para impactar dichos cambios en la rama remota.
@@ -98,18 +117,22 @@
 	- Ahora veremos un ejemplo de como pude suceder un conflicto al mergear dos branches que modificaron los mismos archivos.
 	- Por un lado tenemos la branch_a y por otro las branch_b y ambas modificaran el archivo conflito.txt con cosas distintas.
 	- Al querer mergear la rama branch_b dentro de branch_a esto producira un conflicto que se visualiza de la siguiente manera:
-		  `$ git merge branch_b`
-			`Auto-merging conflicto.txt`
-			`CONFLICT (add/add): Merge conflict in conflicto.txt`
-			`Automatic merge failed; fix conflicts and then commit the result.`
+	  ```bash
+	  	$ git merge branch_b
+		Auto-merging conflicto.txt
+		CONFLICT (add/add): Merge conflict in conflicto.txt
+		Automatic merge failed; fix conflicts and then commit the result.
+		```
 	-  En el archivo conflicto nos encontraremos lo siguiente:
-		  `<<<<<<< HEAD`
-			`Este archivo puede tener conflico en la branch_a`
-		 `=======`
-			`Este archivo generara conflicto.`
-		 `>>>>>>> branch_b`
-		 Como podemos apreciar dentro del archivo conflicto.txt nos encontramos tanto los cambios locales (Entre el `<<<<<<< HEAD` y la barra `=======`) como los remotos.
-		 En este caso vemos que los textos del achivo fueron modificados en ramas distintas, por lo que se debe corregir este conflitos.
+		  ``` bash
+			<<<<<<< HEAD
+				Este archivo puede tener conflico en la branch_a
+			 =======
+				Este archivo generara conflicto.
+		     >>>>>>> branch_b
+			```
+		Como podemos apreciar dentro del archivo conflicto.txt nos encontramos tanto los cambios locales (Entre el `<<<<<<< HEAD` y la barra `=======`) como los remotos.
+		En este caso vemos que los textos del achivo fueron modificados en ramas distintas, por lo que se debe corregir este conflitos.
 	- Tenemos varias formas de corregir un conflito, podemos hacerlo manualmente ingresando al archivo y quedandonos con los cambios que decidamos mantener, luego agregamos los archivos modificados con el comando `git add`. Otra opcion es utilizar el comando `git mergetool` esto nos mostrara una interfaz que podemos configurar con la herramienta que prefiramos (algunos ejemplos son opendiff, kdiff3, tkdiff, xxdiff, meld, vimdiff, nvimdiff) para facilitar la vizualizacion del conflicto, y poder corregirlo. Y como opcion adicional existen extenciones o software dediaco a la resolucion de conflictos en git como son SourceTree, Gitkraken, etc.
 	- Una vez resuelto el conflicto ejecutamos el comando `git merge --continue` para que git salga del estado de MERGING y cree el commit de fusion correspondiente.
 	- Una vez completado el paso anterior podemos ejecutar el git push como se describio en el apartado anterior ( 2) Merge:)
