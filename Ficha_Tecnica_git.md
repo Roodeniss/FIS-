@@ -130,7 +130,7 @@
 3) **Resolución de conflictos**:
 	- Ahora veremos un ejemplo de cómo puede suceder un conflicto al mergear dos branches que modificaron los mismos archivos.
 	  
-	- Por un lado tenemos la branch_a y por otro las branch_b y ambas modificarán el archivo conflito.txt con cosas distintas.
+	- Por un lado tenemos la branch_a y por otro las branch_b y ambas modificarán el archivo conflicto.txt con cosas distintas.
 	  
 	- Al querer mergear la rama branch_b dentro de branch_a esto producirá un conflicto que se visualiza de la siguiente manera:
 	  
