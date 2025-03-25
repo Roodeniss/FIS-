@@ -1,1 +1,1 @@
-Este archivo generara conflicto branch_b.
+Este archivo generara conflicto en rama b.
