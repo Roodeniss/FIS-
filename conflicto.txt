@@ -1,1 +1,1 @@
-Este archivo generara conflicto.
+Este archivo generara conflicto en rama b para la rama a.
